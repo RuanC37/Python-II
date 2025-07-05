@@ -1,17 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Prato
 
 # Create your views here.
-def index (request):
-    dados = {'lista_pratos': 
-        {
-            '1':'Picanha',
-            '2':'Pao De Alho',
-            '3':'Costela',
-            '4':'Contra File ao alho'
-        }
-    }
-    return render(request, 'index.html', dados)
+def index(request):
+    #lista_pratos = Prato.objects.all()
+    lista_pratos = Prato.objects.order_by('-date_prato').filter(publicado=True)
 
-def churrasco(request):
-    context ={'email':'canesgril@teste.com'}
-    return render(request, 'churrasco.html', context)
+    return render(request, 'index.html', {'lista_pratos': lista_pratos})
+
+def churrasco(request, id):
+    prato = get_object_or_404(Prato, id=id)
+    return render(request, 'churrasco.html', {'prato': prato})
+

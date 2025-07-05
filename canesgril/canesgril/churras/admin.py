@@ -1,15 +1,19 @@
 from django.contrib import admin
-from .models import Cliente, Produto
+from .models import Prato
+
+class ListandoPratos(admin.ModelAdmin):
+    list_display = ('id', 'nome_prato', 'categoria', 'tempo_preparo', 'publicado')
+    list_display_links = ('id', 'nome_prato')
+    search_fields = ('nome_prato',)
+    list_filter = ('categoria',)
+    list_editable = ('publicado',)
+    list_per_page = 10
+    actions = ['marcar_como_publicado']
+
+    def marcar_como_publicado(self, request, queryset):
+        atualizados = queryset.update(publicado=True)
+        self.message_user(request, f"{atualizados} pratos foram marcados como publicados.")
+    marcar_como_publicado.short_description = "Publicar Todos"
+
 # Register your models here.
-class ClienteAdmin(admin.ModelAdmin):
-    list_display=('nome', 'sobrenome', 'email')
-    search_fields=('nome', 'sobrenome', 'email')
-    list_filter=('nome', 'sobrenome', 'email')
-
-class ProdutoAdmin(admin.ModelAdmin):
-    list_display=('nome', 'preço', 'estoque')
-    search_fields = ('nome', 'preço')
-    list_filter = ('nome', 'preço')
-
-admin.site.register(Cliente)
-admin.site.register(Produto)
+admin.site.register(Prato, ListandoPratos,)

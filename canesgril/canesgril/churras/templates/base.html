@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -11,24 +10,21 @@
 
     
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
-    
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{% static 'site.css' %}">
-
-    {% block content %} {% endblock %}
+    <link rel="stylesheet" href={% static "site.css" %} >
+    
+    {% block content %} {% endblock  %}
 
      <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <script src={% static "js/jquery/jquery-2.2.4.min.js" %}></script>
     <!-- Popper js -->
-    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <script src={% static "js/bootstrap/popper.min.js" %}></script>
     <!-- Bootstrap js -->
-    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src={% static "js/bootstrap/bootstrap.min.js" %}></script>
     <!-- All Plugins js -->
-    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <script src={% static "js/plugins/plugins.js" %}></script>
     <!-- Active js -->
-    <script src="{% static 'js/active.js' %}"></script>
+    <script src={% static "js/active.js" %}></script>
 </body>
-
 </html>
